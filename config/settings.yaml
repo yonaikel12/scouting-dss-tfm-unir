@@ -1,0 +1,149 @@
+# ==============================================================================
+# CONFIGURACIÓN CENTRALIZADA DEL SISTEMA - SCOUTING DSS (TFM UNIR)
+# ==============================================================================
+# Fundamentación metodológica:
+# - Reducción de dimensionalidad: Jolliffe & Cadima (2016)
+# - Adecuación muestral factorial: Kaiser (1974); Bartlett (1950)
+# - Normalización de potencia: Yeo & Johnson (2000)
+# - Clustering y validación: Ward (1963); MacQueen (1967); Hubert & Arabie (1985)
+# - Resolución de entidades: Yujian & Bo (2007); Christen (2012)
+# ==============================================================================
+
+project:
+  name: "scouting_dss_tfm"
+  title: "Prototipo de apoyo a decisiones de scouting basado en rendimiento y coste de jugadores"
+  university: "Universidad Internacional de La Rioja (UNIR)"
+  version: "1.0.0"
+  random_seed: 42
+  temporal_snapshot: "Temporada 2023/2024 – Apertura 2024/2025 (Corte Estático Point-in-Time)"
+  season_snapshot_code: "2023/24 - 2024/25"
+
+ingestion:
+  api_football:
+    season: 2024
+    target_leagues:
+      - id: 140
+        name: "La Liga"
+        country: "Spain"
+      - id: 39
+        name: "Premier League"
+        country: "England"
+      - id: 135
+        name: "Serie A"
+        country: "Italy"
+      - id: 78
+        name: "Bundesliga"
+        country: "Germany"
+      - id: 61
+        name: "Ligue 1"
+        country: "France"
+      - id: 94
+        name: "Primeira Liga"
+        country: "Portugal"
+      - id: 88
+        name: "Eredivisie"
+        country: "Netherlands"
+    rate_limit:
+      requests_per_minute: 30
+      max_retries: 5
+      backoff_factor: 2.0
+      retry_status_codes: [429, 500, 502, 503, 504]
+      timeout_seconds: 30
+
+  entity_resolution:
+    similarity_threshold: 0.85
+    high_confidence_threshold: 0.93
+    weights:
+      player_name: 0.65
+      birth_year: 0.20
+      club_name: 0.15
+    require_exact_birth_year_on_ambiguity: true
+
+data_contract:
+  schema_path: "config/data_contract_schema.json"
+  minimum_minutes_played: 450
+  thresholds:
+    block_error_rate: 0.15
+    degraded_warning_rate: 0.05
+    minimum_valid_records: 300
+  critical_fields:
+    - "player_id"
+    - "player_name"
+    - "position_group"
+    - "minutes_played"
+    - "team_possession_pct"
+    - "market_value_eur"
+    - "annual_gross_salary_eur"
+
+feature_engineering:
+  standard_match_minutes: 90.0
+  neutral_possession_pct: 50.0
+  possession_bounds:
+    min_pct: 30.0
+    max_pct: 75.0
+  possession_adjusted_metrics:
+    - "tackles_per90"
+    - "interceptions_per90"
+    - "duels_won_per90"
+    - "blocks_per90"
+    - "recoveries_per90"
+  per90_metrics:
+    - "goals_per90"
+    - "assists_per90"
+    - "expected_goals_xg_per90"
+    - "expected_assists_xa_per90"
+    - "key_passes_per90"
+    - "progressive_passes_per90"
+    - "progressive_carries_per90"
+    - "successful_dribbles_per90"
+    - "shots_on_target_per90"
+    - "aerial_duels_won_per90"
+  power_transform:
+    method: "yeo-johnson"
+    standardize: true
+
+analytics:
+  model_health_gate:
+    min_sample_size: 300
+    min_kmo_global: 0.70
+    max_bartlett_pvalue: 0.05
+    max_condition_number: 30.0
+
+  pca:
+    min_explained_variance_ratio: 0.75
+    min_eigenvalue_kaiser: 1.0
+    svd_solver: "full"
+
+  clustering:
+    k_range:
+      min_k: 3
+      max_k: 8
+    kmeans:
+      n_init: 50
+      max_iter: 500
+      algorithm: "lloyd"
+    ward:
+      linkage: "ward"
+      metric: "euclidean"
+    validation:
+      min_adjusted_rand_index: 0.70
+      min_silhouette_score: 0.25
+
+  knn_clones:
+    n_neighbors: 10
+    metric: "euclidean"
+
+  financial_valuation:
+    market_value_weight: 0.60
+    annual_salary_weight: 0.40
+    contract_amortization_years: 4
+
+dashboard:
+  page_title: "Scouting DSS | Rendimiento y Coste (UNIR TFM)"
+  layout: "wide"
+  color_palette:
+    primary_accent: "#0072B2"
+    positive_value: "#009E73"
+    negative_value: "#D55E00"
+    neutral_context: "#7F7F7F"
+    secondary_accent: "#CC79A7"
