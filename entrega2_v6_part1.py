@@ -63,6 +63,9 @@ def configure_unir_v6_styles(doc: Document) -> None:
             h_style.paragraph_format.space_after = Pt(sp_after)
             h_style.paragraph_format.line_spacing = 1.15
             h_style.paragraph_format.page_break_before = False
+            # Suprime la numeración automática heredada de la plantilla para evitar títulos duplicados (ej: '8.5. 3.5.')
+            for num in h_style.element.xpath('.//w:numPr'):
+                num.getparent().remove(num)
 
 
 def add_v6_figure(

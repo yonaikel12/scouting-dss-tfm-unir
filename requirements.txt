@@ -21,3 +21,4 @@ matplotlib>=3.8.0
 python-docx>=1.1.0
 pytest>=8.0.0
 pytest-cov>=5.0.0
+latex2mathml>=3.77.0

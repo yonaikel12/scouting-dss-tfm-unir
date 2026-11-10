@@ -31,6 +31,7 @@ from entrega2_v6_part3 import (
     write_chapter_4_marco_normativo,
 )
 from entrega2_v6_part4 import write_chapters_5_to_8_and_references
+from math_omml import apply_math_typography
 import duckdb
 from src.analytics.multivariate_engine import ScoutingMultivariateEngine
 from run_real_pipeline import run_pipeline
@@ -64,6 +65,9 @@ def build_entrega2_v6() -> None:
     write_chapter_3_metodologia(doc, artifacts, figures_dir)
     write_chapter_4_marco_normativo(doc)
     write_chapters_5_to_8_and_references(doc, artifacts, df_gold, figures_dir)
+
+    math_stats = apply_math_typography(doc)
+    print(f"[MATH] Ecuaciones OMML en bloque: {math_stats['block_equations']} | Matemática en línea: {math_stats['inline_math']}")
 
     for out_path in [target_borrador, target_root, target_docs]:
         out_path.parent.mkdir(parents=True, exist_ok=True)
