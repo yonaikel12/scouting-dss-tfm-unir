@@ -1,0 +1,517 @@
+{
+  "completed_leagues": [
+    "La Liga",
+    "Premier League",
+    "Serie A",
+    "Bundesliga",
+    "Ligue 1",
+    "Eredivisie"
+  ],
+  "current_league_index": 6,
+  "current_page": 4,
+  "total_players_extracted": 4460,
+  "total_calls_made": 242,
+  "teams_cache": {
+    "140": [
+      {
+        "id": 529,
+        "name": "Barcelona"
+      },
+      {
+        "id": 530,
+        "name": "Atletico Madrid"
+      },
+      {
+        "id": 531,
+        "name": "Athletic Club"
+      },
+      {
+        "id": 532,
+        "name": "Valencia"
+      },
+      {
+        "id": 533,
+        "name": "Villarreal"
+      },
+      {
+        "id": 534,
+        "name": "Las Palmas"
+      },
+      {
+        "id": 536,
+        "name": "Sevilla"
+      },
+      {
+        "id": 538,
+        "name": "Celta Vigo"
+      },
+      {
+        "id": 541,
+        "name": "Real Madrid"
+      },
+      {
+        "id": 542,
+        "name": "Alaves"
+      },
+      {
+        "id": 543,
+        "name": "Real Betis"
+      },
+      {
+        "id": 546,
+        "name": "Getafe"
+      },
+      {
+        "id": 547,
+        "name": "Girona"
+      },
+      {
+        "id": 548,
+        "name": "Real Sociedad"
+      },
+      {
+        "id": 715,
+        "name": "Granada CF"
+      },
+      {
+        "id": 723,
+        "name": "Almeria"
+      },
+      {
+        "id": 724,
+        "name": "Cadiz"
+      },
+      {
+        "id": 727,
+        "name": "Osasuna"
+      },
+      {
+        "id": 728,
+        "name": "Rayo Vallecano"
+      },
+      {
+        "id": 798,
+        "name": "Mallorca"
+      }
+    ],
+    "39": [
+      {
+        "id": 33,
+        "name": "Manchester United"
+      },
+      {
+        "id": 34,
+        "name": "Newcastle"
+      },
+      {
+        "id": 35,
+        "name": "Bournemouth"
+      },
+      {
+        "id": 36,
+        "name": "Fulham"
+      },
+      {
+        "id": 39,
+        "name": "Wolves"
+      },
+      {
+        "id": 40,
+        "name": "Liverpool"
+      },
+      {
+        "id": 42,
+        "name": "Arsenal"
+      },
+      {
+        "id": 44,
+        "name": "Burnley"
+      },
+      {
+        "id": 45,
+        "name": "Everton"
+      },
+      {
+        "id": 47,
+        "name": "Tottenham"
+      },
+      {
+        "id": 48,
+        "name": "West Ham"
+      },
+      {
+        "id": 49,
+        "name": "Chelsea"
+      },
+      {
+        "id": 50,
+        "name": "Manchester City"
+      },
+      {
+        "id": 51,
+        "name": "Brighton"
+      },
+      {
+        "id": 52,
+        "name": "Crystal Palace"
+      },
+      {
+        "id": 55,
+        "name": "Brentford"
+      },
+      {
+        "id": 62,
+        "name": "Sheffield Utd"
+      },
+      {
+        "id": 65,
+        "name": "Nottingham Forest"
+      },
+      {
+        "id": 66,
+        "name": "Aston Villa"
+      },
+      {
+        "id": 1359,
+        "name": "Luton"
+      }
+    ],
+    "135": [
+      {
+        "id": 487,
+        "name": "Lazio"
+      },
+      {
+        "id": 488,
+        "name": "Sassuolo"
+      },
+      {
+        "id": 489,
+        "name": "AC Milan"
+      },
+      {
+        "id": 490,
+        "name": "Cagliari"
+      },
+      {
+        "id": 492,
+        "name": "Napoli"
+      },
+      {
+        "id": 494,
+        "name": "Udinese"
+      },
+      {
+        "id": 495,
+        "name": "Genoa"
+      },
+      {
+        "id": 496,
+        "name": "Juventus"
+      },
+      {
+        "id": 497,
+        "name": "AS Roma"
+      },
+      {
+        "id": 499,
+        "name": "Atalanta"
+      },
+      {
+        "id": 500,
+        "name": "Bologna"
+      },
+      {
+        "id": 502,
+        "name": "Fiorentina"
+      },
+      {
+        "id": 503,
+        "name": "Torino"
+      },
+      {
+        "id": 504,
+        "name": "Hellas Verona"
+      },
+      {
+        "id": 505,
+        "name": "Inter"
+      },
+      {
+        "id": 511,
+        "name": "Empoli"
+      },
+      {
+        "id": 512,
+        "name": "Frosinone"
+      },
+      {
+        "id": 514,
+        "name": "Salernitana"
+      },
+      {
+        "id": 867,
+        "name": "Lecce"
+      },
+      {
+        "id": 1579,
+        "name": "Monza"
+      }
+    ],
+    "78": [
+      {
+        "id": 157,
+        "name": "Bayern München"
+      },
+      {
+        "id": 158,
+        "name": "Fortuna Düsseldorf"
+      },
+      {
+        "id": 160,
+        "name": "SC Freiburg"
+      },
+      {
+        "id": 161,
+        "name": "VfL Wolfsburg"
+      },
+      {
+        "id": 162,
+        "name": "Werder Bremen"
+      },
+      {
+        "id": 163,
+        "name": "Borussia Mönchengladbach"
+      },
+      {
+        "id": 164,
+        "name": "FSV Mainz 05"
+      },
+      {
+        "id": 165,
+        "name": "Borussia Dortmund"
+      },
+      {
+        "id": 167,
+        "name": "1899 Hoffenheim"
+      },
+      {
+        "id": 168,
+        "name": "Bayer Leverkusen"
+      },
+      {
+        "id": 169,
+        "name": "Eintracht Frankfurt"
+      },
+      {
+        "id": 170,
+        "name": "FC Augsburg"
+      },
+      {
+        "id": 172,
+        "name": "VfB Stuttgart"
+      },
+      {
+        "id": 173,
+        "name": "RB Leipzig"
+      },
+      {
+        "id": 176,
+        "name": "VfL Bochum"
+      },
+      {
+        "id": 180,
+        "name": "1. FC Heidenheim"
+      },
+      {
+        "id": 181,
+        "name": "SV Darmstadt 98"
+      },
+      {
+        "id": 182,
+        "name": "Union Berlin"
+      },
+      {
+        "id": 192,
+        "name": "1. FC Köln"
+      }
+    ],
+    "61": [
+      {
+        "id": 79,
+        "name": "Lille"
+      },
+      {
+        "id": 80,
+        "name": "Lyon"
+      },
+      {
+        "id": 81,
+        "name": "Marseille"
+      },
+      {
+        "id": 82,
+        "name": "Montpellier"
+      },
+      {
+        "id": 83,
+        "name": "Nantes"
+      },
+      {
+        "id": 84,
+        "name": "Nice"
+      },
+      {
+        "id": 85,
+        "name": "Paris Saint Germain"
+      },
+      {
+        "id": 91,
+        "name": "Monaco"
+      },
+      {
+        "id": 93,
+        "name": "Reims"
+      },
+      {
+        "id": 94,
+        "name": "Rennes"
+      },
+      {
+        "id": 95,
+        "name": "Strasbourg"
+      },
+      {
+        "id": 96,
+        "name": "Toulouse"
+      },
+      {
+        "id": 97,
+        "name": "Lorient"
+      },
+      {
+        "id": 99,
+        "name": "Clermont Foot"
+      },
+      {
+        "id": 106,
+        "name": "Stade Brestois 29"
+      },
+      {
+        "id": 111,
+        "name": "Le Havre"
+      },
+      {
+        "id": 112,
+        "name": "Metz"
+      },
+      {
+        "id": 116,
+        "name": "Lens"
+      },
+      {
+        "id": 1063,
+        "name": "Saint Etienne"
+      }
+    ],
+    "88": [
+      {
+        "id": 193,
+        "name": "PEC Zwolle"
+      },
+      {
+        "id": 194,
+        "name": "Ajax"
+      },
+      {
+        "id": 196,
+        "name": "Excelsior"
+      },
+      {
+        "id": 197,
+        "name": "PSV Eindhoven"
+      },
+      {
+        "id": 198,
+        "name": "ADO Den Haag"
+      },
+      {
+        "id": 199,
+        "name": "De Graafschap"
+      },
+      {
+        "id": 200,
+        "name": "Vitesse"
+      },
+      {
+        "id": 201,
+        "name": "AZ Alkmaar"
+      },
+      {
+        "id": 203,
+        "name": "NAC Breda"
+      },
+      {
+        "id": 205,
+        "name": "Fortuna Sittard"
+      },
+      {
+        "id": 206,
+        "name": "Heracles"
+      },
+      {
+        "id": 207,
+        "name": "Utrecht"
+      },
+      {
+        "id": 208,
+        "name": "Emmen"
+      },
+      {
+        "id": 209,
+        "name": "Feyenoord"
+      },
+      {
+        "id": 210,
+        "name": "Heerenveen"
+      },
+      {
+        "id": 409,
+        "name": "Dordrecht"
+      },
+      {
+        "id": 410,
+        "name": "GO Ahead Eagles"
+      },
+      {
+        "id": 413,
+        "name": "NEC Nijmegen"
+      },
+      {
+        "id": 414,
+        "name": "Roda"
+      },
+      {
+        "id": 415,
+        "name": "Twente"
+      },
+      {
+        "id": 416,
+        "name": "FC Volendam"
+      },
+      {
+        "id": 417,
+        "name": "Waalwijk"
+      },
+      {
+        "id": 419,
+        "name": "Almere City FC"
+      },
+      {
+        "id": 426,
+        "name": "Sparta Rotterdam"
+      }
+    ]
+  },
+  "current_team_index": 0
+}

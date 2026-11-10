@@ -66,7 +66,10 @@ class SilverETLPipeline:
         )
         silver_df, feat_metadata = self.feature_engineer.transform_full_silver(valid_df)
 
-        silver_df.to_parquet(self.silver_parquet_path, index=False, engine="pyarrow")
+        try:
+            silver_df.to_parquet(self.silver_parquet_path, index=False, engine="fastparquet")
+        except Exception:
+            silver_df.to_parquet(self.silver_parquet_path, index=False)
         self._register_in_duckdb(silver_df, table_name="silver_players")
         return silver_df, audit_report, feat_metadata
 

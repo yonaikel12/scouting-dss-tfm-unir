@@ -70,7 +70,10 @@ def execute_full_medallion_pipeline() -> MultivariateModelArtifacts:
     )
     df_gold, artifacts = engine.fit_transform_gold(df_silver)
 
-    df_gold.to_parquet(gold_parquet, index=False, engine="pyarrow")
+    try:
+        df_gold.to_parquet(gold_parquet, index=False, engine="fastparquet")
+    except Exception:
+        df_gold.to_parquet(gold_parquet, index=False)
     with duckdb.connect(str(duckdb_path)) as conn:
         conn.register("tmp_gold", df_gold)
         conn.execute("CREATE OR REPLACE TABLE gold_players AS SELECT * FROM tmp_gold")

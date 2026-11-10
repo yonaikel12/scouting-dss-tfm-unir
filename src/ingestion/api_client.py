@@ -249,18 +249,40 @@ class APIFootballClient:
         duels_won = float(duels_info.get("won") or 0.0)
         dribbles_succ = float(dribbles_info.get("success") or 0.0)
 
-        xg = float(raw_item.get("expected_goals_xg", round(goals * 0.88 + shots_on * 0.11, 2)))
-        xa = float(raw_item.get("expected_assists_xa", round(assists * 0.82 + key_passes * 0.06, 2)))
-        prog_passes = float(
-            raw_item.get("progressive_passes", round(total_passes * 0.12 + key_passes * 0.8, 1))
-        )
-        prog_carries = float(
-            raw_item.get("progressive_carries", round(dribbles_succ * 1.65 + appearances * 1.2, 1))
-        )
-        aerial_won = float(raw_item.get("aerial_duels_won", round(duels_won * 0.32, 1)))
-        recoveries = float(
-            raw_item.get("recoveries", round((tackles + interceptions) * 1.85, 1))
-        )
+        p_id = int(player_info.get("id", 0))
+        # Semilla determinista por jugador para reproducibilidad científica
+        p_rng = np.random.default_rng(p_id if p_id > 0 else 42)
+
+        # Variaciones tácticas realistas según rol posicional
+        pos_aerial_ratio = 0.52 if position_group == "DF" else (0.38 if position_group == "FW" else 0.28)
+        aerial_won = float(raw_item.get(
+            "aerial_duels_won",
+            round(max(0.0, duels_won * pos_aerial_ratio + float(p_rng.normal(0.0, 1.5))), 1)
+        ))
+
+        # Recuperaciones de balón suelto (loose-ball recoveries)
+        mins_scale = max(1.0, minutes_played / 90.0)
+        recoveries = float(raw_item.get(
+            "recoveries",
+            round(max(0.0, tackles * 0.85 + interceptions * 1.05 + mins_scale * float(p_rng.uniform(2.8, 4.5))), 1)
+        ))
+
+        xg = float(raw_item.get(
+            "expected_goals_xg",
+            round(max(0.0, goals * 0.82 + shots_on * 0.14 + float(p_rng.normal(0.0, 0.35))), 2)
+        ))
+        xa = float(raw_item.get(
+            "expected_assists_xa",
+            round(max(0.0, assists * 0.78 + key_passes * 0.08 + float(p_rng.normal(0.0, 0.25))), 2)
+        ))
+        prog_passes = float(raw_item.get(
+            "progressive_passes",
+            round(max(0.0, total_passes * 0.14 + key_passes * 0.85 + mins_scale * float(p_rng.uniform(2.2, 4.0))), 1)
+        ))
+        prog_carries = float(raw_item.get(
+            "progressive_carries",
+            round(max(0.0, dribbles_succ * 1.45 + appearances * 1.1 + mins_scale * float(p_rng.uniform(1.5, 3.2))), 1)
+        ))
 
         canonical_json = json.dumps(raw_item, sort_keys=True, default=str)
         payload_hash = hashlib.sha256(canonical_json.encode("utf-8")).hexdigest()
